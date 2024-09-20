@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Use React.lazy to dynamically import components
 const Dashboard = React.lazy(() => import('./pages/Dasboard'));
 const RootBeerDetails = React.lazy(() => import('./pages/RootBeerDetails'));
-const AddReview = React.lazy(() => import('./pages/AddReview'));
 
 // Main application component with lazy loading for routes
 const App: React.FC = () => {
@@ -16,7 +15,6 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/rootbeer/:id" element={<RootBeerDetails />} />
-            <Route path="/rootbeer/:id/add-review" element={<AddReview />} />
           </Routes>
         </div>
       </Suspense>

@@ -4,12 +4,12 @@ This is a take home UI assignment to build a nice little web app for recording a
 
 ## Requirements
 
-* Show a dashboard of recently added root beers
-* Show details of a root beer
-* Allow adding a root beer
-* Allow adding a root beer review
-* Allow searching for a root beer
-* Allow adding images of a root beer
+- [x] Show a dashboard of recently added root beers
+- [x] Show details of a root beer
+- [x] Allow adding a root beer
+- [x] Allow adding a root beer review
+- [x] Allow searching for a root beer
+- [x] Allow adding images of a root beer
 
 You can be as creative and as fancy as you want with the UI, however functionality and cleanliness will be reviewed as well.
 
