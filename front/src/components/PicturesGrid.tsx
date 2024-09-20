@@ -17,7 +17,6 @@ const PicturesGrid: React.FC<PicturesGridProps> = ({ pictures }) => (
       pictures.map((picture) => (
         <div key={picture.id} className="mb-4">
           <img src={getImageUrl(picture.path)} alt={picture.name} className="w-24 h-24 object-cover rounded" />
-          <p className="text-sm text-gray-500 mt-1">{picture.name}</p>
         </div>
       ))
     ) : (

@@ -18,7 +18,7 @@ const RatingDropdown: React.FC<RatingDropdownProps> = ({ label, selectedRating, 
   };
 
   return (
-    <div className="ml-2 relative flex items-center">
+    <div className="relative flex items-center">
       <div className="w-full">
         <button
           type="button"

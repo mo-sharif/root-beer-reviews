@@ -17,7 +17,7 @@ const RootBeerCard: React.FC<RootBeerCardProps> = ({
   return (
     <Link
       to={`/rootbeer/${id}`}
-      className="bg-gray-100 p-4 rounded-lg hover:shadow-xl hover:bg-blue-50 transition duration-200 ease-in-out transform hover:scale-105 animate-fadeIn"
+      className="bg-gray-100 p-4 rounded-lg hover:shadow-xl hover:bg-blue-50 transition duration-200 ease-in-out transform hover:scale-105 animate-fadeIn relative group"
     >
       {pictures.length > 0 && (
         <img
@@ -30,11 +30,15 @@ const RootBeerCard: React.FC<RootBeerCardProps> = ({
         <p className="text-xl font-semibold text-blue-600">{name}</p>
         <p className="text-gray-600 mt-2">{description}</p>
 
-        {reviewAverageRating !== undefined && (
+        {/* Check if reviewAverageRating is undefined */}
+        {reviewAverageRating === (undefined) ? (
+          <p className="text-gray-500 mt-4">No ratings</p>
+        ) : (
           <div className="mt-4">
             <StarRating rating={Math.round(reviewAverageRating)} />
-            <p className="text-gray-600 text-sm">
-              Average Rating: {reviewAverageRating?.toFixed(1)} / 5
+            {/* Reveal this text when the card is hovered */}
+            <p className="text-gray-600 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out">
+              Average Rating: {reviewAverageRating === null ? 0 : reviewAverageRating?.toFixed(1)} / 5
             </p>
           </div>
         )}

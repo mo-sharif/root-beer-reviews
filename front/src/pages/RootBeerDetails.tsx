@@ -1,5 +1,5 @@
 import React, { Suspense, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useRootBeerDetails } from '../hooks/useRootBeerDetails';
 import { useReviews } from '../hooks/useReviews';
 import ImageUploader from '../components/ImageUploader';
@@ -15,8 +15,12 @@ const RootBeerDetails: React.FC = () => {
   const [length] = useState<number>(5);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const rootBeer = useRootBeerDetails(id!);
-  const { reviews, totalReviews } = useReviews(id!, offset, length);
+  // Define a state to refresh the component
+  const [refreshFlag, setRefreshFlag] = useState<boolean>(false);
+
+  // Use custom hooks to fetch root beer details and reviews
+  const rootBeer = useRootBeerDetails(id!, refreshFlag);
+  const { reviews, totalReviews } = useReviews(id!, offset, length, refreshFlag);
 
   const totalPages = Math.ceil(totalReviews / length);
 
@@ -34,8 +38,8 @@ const RootBeerDetails: React.FC = () => {
     }
   };
 
-  const handleRefresh = async () => {
-    // Logic to refresh the root beer and reviews
+  const handleRefresh = () => {
+    setRefreshFlag((prevFlag) => !prevFlag); // Toggle the flag to refresh data
   };
 
   if (!rootBeer) {
@@ -44,6 +48,13 @@ const RootBeerDetails: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
+      {/* Pagination-style header with a "Home" link */}
+      <div className="text-gray-600 mb-4">
+        <Link to="/" className="text-blue-600 hover:underline">Home</Link> 
+        <span className="mx-2">/</span>
+        <span>{rootBeer.name}</span>
+      </div>
+
       <h1 className="text-3xl font-bold mb-4">{rootBeer.name}</h1>
       <p className="text-gray-600 mb-4">{rootBeer.description}</p>
 
@@ -61,7 +72,10 @@ const RootBeerDetails: React.FC = () => {
         currentPage={currentPage}
         totalPages={totalPages}
         onPrevious={handlePreviousPage}
-        onNext={handleNextPage} isNextDisabled={false} isPreviousDisabled={false}      />
+        onNext={handleNextPage}
+        isNextDisabled={currentPage >= totalPages}
+        isPreviousDisabled={currentPage <= 1}
+      />
 
       {/* Image Uploader */}
       <ImageUploader uploadUrl={`http://localhost:4000/api/drinks/${id}/pictures`} onImageUploaded={handleRefresh} />
