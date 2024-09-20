@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import RatingDropdown from './RatingDropdown'; // Import the reusable RatingDropdown component
-import Alert from './Alert'; // Import the new Alert component
+import Alert from 'components/Alert'; // Import the new Alert component
 
 interface AddReviewProps {
   rootBeerId: string;

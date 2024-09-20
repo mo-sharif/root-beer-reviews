@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import StarRating from './StarRating';
+import StarRating from 'components/StarRating';
 
 interface RatingDropdownProps {
   label: string;

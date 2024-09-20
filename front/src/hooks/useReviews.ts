@@ -1,7 +1,7 @@
 // hooks/useReviews.ts
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Review, ReviewsResponse } from '../interfaces';
+import { Review, ReviewsResponse } from 'interfaces';
 
 export const useReviews = (id: string, offset: number, length: number, refreshFlag: boolean) => {
     const [reviews, setReviews] = useState<Review[]>([]);

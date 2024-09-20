@@ -1,12 +1,12 @@
 import React, { useState, Suspense } from 'react';
-import { useRootBeerFetch } from '../hooks/useRootBeerFetch';
-import Toolbar from '../components/Toolbar';
-import RootBeerCard from '../components/RootBeerCard';
-import Pagination from '../components/Pagination';
-import Loader from '../components/Loader';
-import Modal from '../components/Modal'; // Import the reusable modal component
+import { useRootBeerFetch } from 'hooks/useRootBeerFetch';
+import Toolbar from 'components/Toolbar';
+import RootBeerCard from 'components/RootBeerCard';
+import Pagination from 'components/Pagination';
+import Loader from 'components/Loader';
+import Modal from 'components/Modal'; // Import the reusable modal component
 
-const AddRootBeer = React.lazy(() => import('../components/AddRootBeer'));
+const AddRootBeer = React.lazy(() => import('components/AddRootBeer'));
 
 const Dashboard: React.FC = () => {
     const [offset, setOffset] = useState<number>(0);

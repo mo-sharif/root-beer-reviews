@@ -1,5 +1,5 @@
 import React from 'react';
-import { getImageUrl } from '../utils/formatUtils'; // Utility function
+import { getImageUrl } from 'utils/formatUtils'; // Utility function
 
 interface PictureObject {
   id: number;

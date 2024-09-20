@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Alert from './Alert'; // Import the Alert component
+import Alert from 'components/Alert'; // Import the Alert component
 
 interface AddRootBeerProps {
   onRootBeerAdded: () => void; // Callback to notify when a root beer is added

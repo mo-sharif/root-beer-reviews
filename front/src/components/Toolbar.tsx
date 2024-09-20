@@ -1,5 +1,5 @@
 import React from 'react';
-import RatingDropdown from './RatingDropdown';
+import RatingDropdown from 'components/RatingDropdown';
 
 interface ToolbarProps {
     sort: string;

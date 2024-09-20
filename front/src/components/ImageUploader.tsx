@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Alert from './Alert'; // Import the reusable Alert component
+import Alert from 'components/Alert'; // Import the reusable Alert component
 
 interface ImageUploaderProps {
   uploadUrl: string; // URL to upload the image

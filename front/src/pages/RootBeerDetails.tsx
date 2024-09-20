@@ -1,14 +1,14 @@
 import React, { Suspense, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useRootBeerDetails } from '../hooks/useRootBeerDetails';
-import { useReviews } from '../hooks/useReviews';
-import Modal from '../components/Modal';
-import Pagination from '../components/Pagination';
-import PicturesGrid from '../components/PicturesGrid';
-import ReviewList from '../components/ReviewList';
+import { useRootBeerDetails } from 'hooks/useRootBeerDetails';
+import { useReviews } from 'hooks/useReviews';
+import Pagination from 'components/Pagination';
+import PicturesGrid from 'components/PicturesGrid';
+import ReviewList from 'components/ReviewList';
+import Modal from 'components/Modal';
 
-const AddReview = React.lazy(() => import('../components/AddReview'));
-const ImageUploader = React.lazy(() => import('../components/ImageUploader'));
+const AddReview = React.lazy(() => import('components/AddReview'));
+const ImageUploader = React.lazy(() => import('components/ImageUploader'));
 
 const RootBeerDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();

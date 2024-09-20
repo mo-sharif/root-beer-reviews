@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import StarRating from './StarRating';
-import { getImageUrl } from '../utils/formatUtils';
+import StarRating from 'components/StarRating';
+import { getImageUrl } from 'utils/formatUtils';
 
 interface RootBeerCardProps {
   id: number;

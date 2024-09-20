@@ -1,7 +1,7 @@
 // hooks/useRootBeerDetails.ts
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { RootBeer } from '../interfaces';
+import { RootBeer } from 'interfaces';
 
 export const useRootBeerDetails = (id: string, refreshFlag: boolean) => {
   const [rootBeer, setRootBeer] = useState<RootBeer | null>(null);
