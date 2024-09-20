@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import StarRating from './StarRating';
 import RatingDropdown from './RatingDropdown'; // Import the reusable RatingDropdown component
 import Alert from './Alert'; // Import the new Alert component
 
@@ -59,9 +58,7 @@ const AddReview: React.FC<AddReviewProps> = ({ rootBeerId, onReviewAdded }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded p-4 mt-8">
-        <h2 className="text-2xl mb-4">Add a Review</h2>
-
+      <form onSubmit={handleSubmit} className="p-4 mt-8">
         <div className="mb-4">
           <label className="block mb-2">Your Name</label>
           <input
