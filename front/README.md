@@ -82,6 +82,36 @@ root/
 - **Backend Setup**:
   - Backend should be running in the `back/` directory (not covered here).
 
+  Here's an updated version of the **Next Steps** section for the `README.md` file. You can append it to the existing README to outline future improvements and enhancements for the project.
+
+### Next Steps
+
+1. **Add Unit Tests**
+   - Implement comprehensive unit tests for components using tools like `Jest` and `React Testing Library`.
+   - Ensure components like `Toolbar`, `RootBeerCard`, and `Modal` are fully covered.
+   - Set up code coverage thresholds to maintain a high-quality test suite.
+
+2. **Improve Responsiveness**
+   - Optimize the layout for smaller devices such as mobile phones and tablets.
+   - Ensure components are responsive by refining TailwindCSS classes or adding media queries.
+   - Test UI across multiple screen sizes to ensure proper alignment and readability.
+
+3. **Enhance Accessibility**
+   - Ensure the app follows accessibility best practices, including proper use of ARIA attributes, focus management, and keyboard navigation.
+   - Add screen reader-friendly text for interactive elements (e.g., buttons and links).
+   - Ensure color contrast is adequate for users with visual impairments.
+
+4. **Move Alerts to Global Layout**
+   - Implement a global alert/notification system using a global state manager (e.g., React Context or Zustand).
+   - Move the alert functionality from individual components to a global layout to centralize error and success messages.
+   - Display alerts in a consistent, unobtrusive way, with options to dismiss.
+
+5. **Fix UI Glitches**
+   - Address any known UI glitches, such as alignment issues or occasional component flickering.
+   - Refactor animations to avoid unnecessary re-renders or performance bottlenecks.
+   - Improve handling of modals and loaders to prevent overlap and visual disturbances during transitions.
+
+
 ## Conclusion
 
 The Root Beer Review App is a simple yet interactive application that allows users to manage root beer reviews and images, with features like animations, search, modals, and pagination. The codebase is structured for scalability and maintainability, making it easy to extend with new features.
