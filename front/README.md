@@ -1,46 +1,87 @@
-# Getting Started with Create React App
+# 🍻 Root Beer Review App - Readme
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The **Root Beer Review App** is a web application that allows users to view, review, and upload pictures of root beers. The app includes features like pagination, search filters, and modals for adding reviews and uploading images.
 
-In the project directory, you can run:
+## Steps that I took
 
-### `npm start`
+- **UI Components**:
+  - Built a simple UI using **React**.
+  - Components for managing root beers, reviews, and image uploads.
+  - Added **fade-in animations** using **TailwindCSS** for smoother UI interactions.
+  
+- **Custom Hooks**:
+  - Used custom hooks to fetch **root beer details** and **reviews** from the backend.
+  - Hooks help manage side effects, data fetching, and state updates in components.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Pagination and Filtering**:
+  - Implemented **pagination** for root beer reviews.
+  - Added **search functionality** to filter root beers by name and description.
+  - Built **sort and rating filters** to enhance the browsing experience.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Modals for Adding Content**:
+  - Created reusable **modal components** using **Headless UI** for adding reviews and uploading pictures.
+  - Integrated modal forms to handle data submission and state updates.
 
-### `npm test`
+- **Debouncing for Search**:
+  - Used **debouncing** to delay search queries by 300ms to improve performance.
+  
+## File Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+root/
+│
+├── front/                  # Front-end React app
+│   ├── src/
+│   │   ├── components/      # Reusable UI components (e.g., Toolbar, Modal, RootBeerCard)
+│   │   ├── hooks/           # Custom hooks for fetching data (e.g., useRootBeerDetails)
+│   │   ├── pages/           # Page-level components (e.g., Dashboard, RootBeerDetails)
+│   │   ├── App.tsx          # Main app component with routing
+│   │   └── index.tsx        # Entry point for React app
+│   ├── package.json         # Front-end dependencies and scripts
+│   └── tailwind.config.js   # TailwindCSS configuration
+|   └── README.md            # This README
+│
+├── back/                   # Backend service (not detailed here)
+│
+└── README.md               # High-level README
+```
 
-### `npm run build`
+## How It Works
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Main Flow**:
+  - Users can browse root beers and see reviews and pictures.
+  - Users can add new root beers, reviews, and pictures through modals.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Root Beer Details**:
+  - On selecting a root beer, users are taken to a details page where they can view:
+    - Existing pictures and reviews.
+    - Pagination for browsing through multiple reviews.
+    - Options to upload pictures or add a review.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Data Fetching**:
+  - Custom hooks like `useRootBeerDetails` and `useReviews` manage API requests for fetching root beer details and reviews.
+  - On adding a new review or picture, data is refetched and updated automatically.
 
-### `npm run eject`
+- **Modals**:
+  - Reusable modal component for opening forms to add reviews or upload pictures.
+  - Modals are triggered by buttons on the UI and manage form submission seamlessly.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **Animations**:
+  - Fade-in animations applied to components for a smoother user experience.
+  - Handled via TailwindCSS custom animations.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Running the Project
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **Front-end Setup**:
+  1. Navigate to the `front/` directory.
+  2. Install dependencies using `npm install`.
+  3. Start the development server using `npm start`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Backend Setup**:
+  - Backend should be running in the `back/` directory (not covered here).
 
-## Learn More
+## Conclusion
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The Root Beer Review App is a simple yet interactive application that allows users to manage root beer reviews and images, with features like animations, search, modals, and pagination. The codebase is structured for scalability and maintainability, making it easy to extend with new features.

@@ -1,5 +1,7 @@
 # Getting Started
 
+✨ For more detailed information about the front-end setup, please refer to the [Front-End Readme](./front/README.md).
+
 Run the following commands to start the script in root folder
 
 ```sh
