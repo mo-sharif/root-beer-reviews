@@ -21,7 +21,7 @@ export interface RootBeer {
   name: string;
   description: string;
   Pictures: PictureObject[];
-  reviewAverageRating? : number;
+  reviewAverageRating?: number;
 }
 
 export interface ReviewsResponse {

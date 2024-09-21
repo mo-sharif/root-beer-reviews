@@ -1,4 +1,4 @@
-import { Menu, Transition } from "@headlessui/react";
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import StarRating from "components/StarRating";
 
@@ -22,7 +22,7 @@ const RatingDropdown: React.FC<RatingDropdownProps> = ({
       <Menu as="div" className="relative">
         {/* Menu Button */}
         <div>
-          <Menu.Button className="inline-flex w-full justify-between items-center bg-white border p-2 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <MenuButton className="inline-flex w-full justify-between items-center bg-white border p-2 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             {selectedRating ? (
               <div className="flex items-center">
                 <StarRating rating={selectedRating} />
@@ -30,7 +30,7 @@ const RatingDropdown: React.FC<RatingDropdownProps> = ({
             ) : (
               label
             )}
-          </Menu.Button>
+          </MenuButton>
         </div>
 
         {/* Dropdown Items */}
@@ -43,10 +43,10 @@ const RatingDropdown: React.FC<RatingDropdownProps> = ({
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute mt-2 w-44 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+          <MenuItems className="absolute mt-2 w-44 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
             <div className="py-1">
               {[1, 2, 3, 4, 5].map((value) => (
-                <Menu.Item key={value}>
+                <MenuItem key={value}>
                   {({ active }) => (
                     <button
                       className={`${
@@ -60,10 +60,10 @@ const RatingDropdown: React.FC<RatingDropdownProps> = ({
                       </span>
                     </button>
                   )}
-                </Menu.Item>
+                </MenuItem>
               ))}
             </div>
-          </Menu.Items>
+          </MenuItems>
         </Transition>
       </Menu>
     </div>
