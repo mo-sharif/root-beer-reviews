@@ -28,15 +28,15 @@ const Toolbar: React.FC<ToolbarProps> = ({
   onSearch,
 }) => {
   return (
-    <div className="bg-gray-100 p-4 rounded-lg mt-8 flex flex-wrap justify-between items-center gap-4">
+    <div className="bg-gray-100 p-4 rounded-lg mt-8 flex flex-wrap justify-between items-center gap-2">
       {/* Search bar using SearchRootBeer */}
-      <div className="flex items-center w-full lg:w-auto">
+      <div className="flex items-center w-full lg:w-auto text-sm">
         <label className="mr-4">Search:</label>
         <SearchRootBeer searchTerm={searchTerm} onSearch={onSearch} />
       </div>
 
       {/* Sort by */}
-      <div className="flex items-center">
+      <div className="flex items-center text-sm">
         <label className="mr-4">Sort by:</label>
         <select
           value={sort}
@@ -49,7 +49,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
       </div>
 
       {/* Order */}
-      <div className="flex items-center">
+      <div className="flex items-center text-sm">
         <label className="mr-4">Order:</label>
         <select
           value={desc ? "desc" : "asc"}
@@ -62,7 +62,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
       </div>
 
       {/* Rating Filters */}
-      <div className="flex items-center">
+      <div className="flex items-center text-sm">
         <div>
           <RatingDropdown
             label="Min Rating"

@@ -64,7 +64,7 @@ const Dashboard: React.FC = () => {
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">🍻 Root Beer Reviews</h1>
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="bg-blue-500 text-white text-sm px-4 py-2 shadow-md rounded hover:bg-blue-600 hover:scale-105 transition-all"
           onClick={() => setIsModalOpen(true)}
         >
           Add New
@@ -85,7 +85,7 @@ const Dashboard: React.FC = () => {
         onSearch={handleSearch} // Use handleSearch to filter by name and description
       />
       {/* List of Root Beers */}
-      <div className="bg-white shadow-md rounded-lg p-6 mt-8">
+      <div className="bg-white shadow-xl rounded-lg p-6 mt-8">
         {loading ? (
           <Loader />
         ) : rootBeers.length === 0 ? (

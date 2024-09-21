@@ -22,19 +22,19 @@ const Pagination: React.FC<PaginationProps> = ({
       <button
         onClick={onPrevious}
         disabled={isPreviousDisabled}
-        className="bg-gray-300 text-gray-700 px-4 py-2 rounded disabled:bg-gray-200"
+        className="bg-gray-300 text-gray-700 text-sm px-4 py-2 rounded disabled:bg-gray-200"
       >
         Previous
       </button>
 
-      <div>
+      <div className="text-sm">
         Page {currentPage} of {totalPages}
       </div>
 
       <button
         onClick={onNext}
         disabled={isNextDisabled}
-        className="bg-gray-300 text-gray-700 px-4 py-2 rounded disabled:bg-gray-200"
+        className="bg-gray-300 text-gray-700 text-sm px-4 py-2 rounded disabled:bg-gray-200"
       >
         Next
       </button>

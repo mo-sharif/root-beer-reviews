@@ -49,6 +49,8 @@ const RootBeerDetails: React.FC = () => {
   };
 
   const handleRefresh = () => {
+    setIsReviewModalOpen(false);
+    setIsImageModalOpen(false);
     setRefreshFlag((prevFlag) => !prevFlag); // Toggle the flag to refresh data
   };
 
@@ -66,7 +68,7 @@ const RootBeerDetails: React.FC = () => {
         <span className="mx-2">/</span>
         <span>{rootBeer.name}</span>
       </div>
-      <div className="bg-white shadow-md rounded-lg p-6 mt-8">
+      <div className="bg-white shadow-xl rounded-lg p-6 mt-8">
         <h1 className="text-3xl font-bold mb-4">{rootBeer.name}</h1>
         <p className="text-gray-600 mb-4">{rootBeer.description}</p>
 
@@ -74,7 +76,7 @@ const RootBeerDetails: React.FC = () => {
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold mb-4">Pictures</h2>
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className="bg-blue-500 text-white text-sm px-4 py-2 shadow-md rounded hover:bg-blue-600 hover:scale-105 transition-all"
             onClick={() => setIsImageModalOpen(true)}
           >
             Add Picture
@@ -86,7 +88,7 @@ const RootBeerDetails: React.FC = () => {
         <div className="flex justify-between items-center mt-8">
           <h2 className="text-2xl font-bold mb-4">Reviews ({totalReviews})</h2>
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className="bg-blue-500 text-white text-sm px-4 py-2 shadow-md rounded hover:bg-blue-600 hover:scale-105 transition-all"
             onClick={() => setIsReviewModalOpen(true)}
           >
             Add Review

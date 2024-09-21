@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Alert from "components/Alert"; // Import the reusable Alert component
+import { useAlert } from "context/AlertContext"; // Import the global Alert context
 
 interface ImageUploaderProps {
   uploadUrl: string; // URL to upload the image
@@ -13,8 +13,9 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
 }) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
-  const [showErrorAlert, setShowErrorAlert] = useState<boolean>(false);
+
+  // Use the global alert context
+  const { showAlert } = useAlert();
 
   // Handle image selection
   const handleImageSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,11 +42,11 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
         },
       });
 
-      setShowSuccessAlert(true); // Show success alert
+      showAlert("Image uploaded successfully!", "success"); // Show success alert
       setSelectedImage(null); // Clear the selected image after successful upload
       onImageUploaded(); // Notify the parent component
     } catch (error) {
-      setShowErrorAlert(true); // Show error alert
+      showAlert("Failed to upload image.", "error"); // Show error alert
       console.error("Error uploading image:", error);
     } finally {
       setLoading(false);
@@ -54,22 +55,6 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
 
   return (
     <div>
-      {/* Success Alert */}
-      <Alert
-        message="Image uploaded successfully!"
-        show={showSuccessAlert}
-        type="success"
-        onClose={() => setShowSuccessAlert(false)}
-      />
-
-      {/* Error Alert */}
-      <Alert
-        message="Failed to upload image."
-        show={showErrorAlert}
-        type="error"
-        onClose={() => setShowErrorAlert(false)}
-      />
-
       <form onSubmit={handleImageUpload} className="mt-6">
         <input
           type="file"
@@ -89,7 +74,11 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
 
         <button
           type="submit"
-          className={`mt-4 py-2 px-4 rounded ${selectedImage ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
+          className={`mt-4 py-2 px-4 rounded ${
+            selectedImage
+              ? "bg-blue-500 text-white"
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+          }`}
           disabled={!selectedImage || loading}
         >
           {loading ? "Uploading..." : "Upload Image"}

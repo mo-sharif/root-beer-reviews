@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import RatingDropdown from "./RatingDropdown"; // Import the reusable RatingDropdown component
-import Alert from "components/Alert"; // Import the new Alert component
+import { useAlert } from "context/AlertContext"; // Import the global alert context
 
 interface AddReviewProps {
   rootBeerId: string;
@@ -12,11 +12,12 @@ const AddReview: React.FC<AddReviewProps> = ({ rootBeerId, onReviewAdded }) => {
   const [userName, setUserName] = useState<string>("");
   const [reviewText, setReviewText] = useState<string>("");
   const [rating, setRating] = useState<number | null>(null);
-  const [alertMessage, setAlertMessage] = useState<string>("");
-  const [showAlert, setShowAlert] = useState<boolean>(false);
-  const [alertType, setAlertType] = useState<"success" | "error">("success");
   const [loading, setLoading] = useState<boolean>(false);
 
+  // Use the global alert context
+  const { showAlert } = useAlert();
+
+  // Form validation
   const isFormValid =
     userName.trim() !== "" && reviewText.trim() !== "" && rating !== null;
 
@@ -24,9 +25,10 @@ const AddReview: React.FC<AddReviewProps> = ({ rootBeerId, onReviewAdded }) => {
     e.preventDefault();
 
     if (!isFormValid) {
-      setAlertMessage("Please fill in all fields and provide a valid rating.");
-      setAlertType("error");
-      setShowAlert(true);
+      showAlert(
+        "Please fill in all fields and provide a valid rating.",
+        "error",
+      );
       return;
     }
 
@@ -43,18 +45,16 @@ const AddReview: React.FC<AddReviewProps> = ({ rootBeerId, onReviewAdded }) => {
         `http://localhost:4000/api/drinks/${rootBeerId}/reviews`,
         payload,
       );
-      setAlertMessage("Review added successfully!");
-      setAlertType("success");
-      setShowAlert(true);
+      showAlert("Review added successfully!", "success");
 
+      // Reset form fields
       setUserName("");
       setReviewText("");
       setRating(null);
-      onReviewAdded();
+      onReviewAdded(); // Notify parent component
     } catch (error) {
-      setAlertMessage("Failed to submit the review. Please try again.");
-      setAlertType("error");
-      setShowAlert(true);
+      showAlert("Failed to submit the review. Please try again.", "error");
+      console.error("Error adding review:", error);
     } finally {
       setLoading(false);
     }
@@ -95,20 +95,12 @@ const AddReview: React.FC<AddReviewProps> = ({ rootBeerId, onReviewAdded }) => {
 
         <button
           type="submit"
-          className={`py-2 px-4 rounded ${isFormValid ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
+          className={`py-2 px-4 rounded shadow-md ${isFormValid ? "bg-blue-500 text-white hover:scale-105 transition-all" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
           disabled={!isFormValid || loading}
         >
           {loading ? "Submitting..." : "Submit Review"}
         </button>
       </form>
-
-      {/* Reusable Alert Component */}
-      <Alert
-        message={alertMessage}
-        show={showAlert}
-        type={alertType}
-        onClose={() => setShowAlert(false)}
-      />
     </div>
   );
 };
