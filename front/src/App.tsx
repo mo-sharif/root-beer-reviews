@@ -1,3 +1,4 @@
+import Loader from "components/Loader";
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -10,7 +11,7 @@ const App: React.FC = () => {
   return (
     <Router>
       {/* Suspense is used to show a fallback UI while components are being loaded */}
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <div className="container mx-auto p-4">
           <Routes>
             <Route path="/" element={<Dashboard />} />
