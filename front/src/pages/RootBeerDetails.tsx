@@ -6,6 +6,7 @@ import Pagination from "components/Pagination";
 import PicturesGrid from "components/PicturesGrid";
 import ReviewList from "components/ReviewList";
 import Modal from "components/Modal";
+import Loader from "components/Loader";
 
 const AddReview = React.lazy(() => import("components/AddReview"));
 const ImageUploader = React.lazy(() => import("components/ImageUploader"));
@@ -55,7 +56,7 @@ const RootBeerDetails: React.FC = () => {
   };
 
   if (!rootBeer) {
-    return <div>Loading root beer details...</div>;
+    return <Loader text="Loading root beer details..." />;
   }
 
   return (

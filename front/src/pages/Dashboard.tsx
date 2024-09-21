@@ -31,7 +31,6 @@ const Dashboard: React.FC = () => {
     length,
   );
   const totalPages = Math.ceil(total / length);
-
   const handleSearch = (query: string) => {
     setName(query); // Use query to filter by name
     setDescription(query); // Use query to filter by description
