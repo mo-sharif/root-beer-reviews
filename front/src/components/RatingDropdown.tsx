@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { Fragment } from "react";
 import StarRating from "components/StarRating";
 
 interface RatingDropdownProps {
@@ -12,52 +13,59 @@ const RatingDropdown: React.FC<RatingDropdownProps> = ({
   selectedRating,
   onRatingSelect,
 }) => {
-  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
-
-  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
-
   const handleRatingSelect = (rating: number) => {
     onRatingSelect(rating);
-    setDropdownOpen(false); // Close the dropdown after selection
   };
 
   return (
-    <div className="relative flex items-center">
-      <div className="w-full">
-        <button
-          type="button"
-          className="border p-2 rounded w-full bg-white flex justify-between items-center"
-          onClick={toggleDropdown}
-        >
-          {selectedRating ? (
-            <div className="flex items-center">
-              <StarRating rating={selectedRating} />{" "}
-              {/* Show selected rating with stars */}
-            </div>
-          ) : (
-            label
-          )}
-          <span>{dropdownOpen ? "▲" : "▼"}</span>
-        </button>
+    <div className="relative inline-block text-left">
+      <Menu as="div" className="relative">
+        {/* Menu Button */}
+        <div>
+          <Menu.Button className="inline-flex w-full justify-between items-center bg-white border p-2 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            {selectedRating ? (
+              <div className="flex items-center">
+                <StarRating rating={selectedRating} />
+              </div>
+            ) : (
+              label
+            )}
+          </Menu.Button>
+        </div>
 
-        {/* Dropdown list of ratings */}
-        {dropdownOpen && (
-          <ul className="w-44 absolute bg-white border mt-1 rounded  z-10 overflow-hidden">
-            {[1, 2, 3, 4, 5].map((value) => (
-              <li
-                key={value}
-                className="p-2 hover:bg-gray-100 cursor-pointer flex items-center justify-between"
-                onClick={() => handleRatingSelect(value)}
-              >
-                <StarRating rating={value} /> {/* Show stars */}
-                <span className="text-xs">
-                  {value} Star{value > 1 ? "s" : ""}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+        {/* Dropdown Items */}
+        <Transition
+          as={Fragment}
+          enter="transition ease-out duration-100"
+          enterFrom="transform opacity-0 scale-95"
+          enterTo="transform opacity-100 scale-100"
+          leave="transition ease-in duration-75"
+          leaveFrom="transform opacity-100 scale-100"
+          leaveTo="transform opacity-0 scale-95"
+        >
+          <Menu.Items className="absolute mt-2 w-44 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+            <div className="py-1">
+              {[1, 2, 3, 4, 5].map((value) => (
+                <Menu.Item key={value}>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? "bg-gray-100" : ""
+                      } flex items-center justify-between w-full px-4 py-2 text-sm text-gray-700`}
+                      onClick={() => handleRatingSelect(value)}
+                    >
+                      <StarRating rating={value} />
+                      <span className="ml-2">
+                        {value} Star{value > 1 ? "s" : ""}
+                      </span>
+                    </button>
+                  )}
+                </Menu.Item>
+              ))}
+            </div>
+          </Menu.Items>
+        </Transition>
+      </Menu>
     </div>
   );
 };

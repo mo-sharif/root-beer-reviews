@@ -87,7 +87,7 @@ const AddReview: React.FC<AddReviewProps> = ({ rootBeerId, onReviewAdded }) => {
         {/* Use the RatingDropdown component */}
         <div className="mb-4">
           <RatingDropdown
-            label="Rating"
+            label="⭐️ Add Rating"
             selectedRating={rating}
             onRatingSelect={setRating}
           />
