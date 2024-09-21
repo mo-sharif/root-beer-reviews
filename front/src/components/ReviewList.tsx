@@ -1,13 +1,6 @@
 import React from "react";
 import StarRating from "components/StarRating"; // Import StarRating component
-
-interface Review {
-  id: number;
-  user_name: string;
-  description: string;
-  rating: number;
-  createdAt: string;
-}
+import { Review } from "interfaces";
 
 interface ReviewListProps {
   reviews: Review[];

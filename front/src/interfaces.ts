@@ -1,4 +1,4 @@
-interface PictureObject {
+export interface PictureObject {
   id: number;
   name: string;
   mimetype: string;
@@ -21,6 +21,7 @@ export interface RootBeer {
   name: string;
   description: string;
   Pictures: PictureObject[];
+  reviewAverageRating? : number;
 }
 
 export interface ReviewsResponse {

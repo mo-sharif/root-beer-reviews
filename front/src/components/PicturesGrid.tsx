@@ -1,11 +1,6 @@
+import { PictureObject } from "interfaces";
 import React from "react";
 import { getImageUrl } from "utils/formatUtils"; // Utility function
-
-interface PictureObject {
-  id: number;
-  name: string;
-  path: string;
-}
 
 interface PicturesGridProps {
   pictures: PictureObject[];
