@@ -1,9 +1,9 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Use React.lazy to dynamically import components
-const Dashboard = React.lazy(() => import('./pages/Dasboard'));
-const RootBeerDetails = React.lazy(() => import('./pages/RootBeerDetails'));
+const Dashboard = React.lazy(() => import("./pages/Dasboard"));
+const RootBeerDetails = React.lazy(() => import("./pages/RootBeerDetails"));
 
 // Main application component with lazy loading for routes
 const App: React.FC = () => {

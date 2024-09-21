@@ -1,3 +1,16 @@
+# Getting Started
+
+Run the following commands to start the script in root folder
+
+```sh
+chmod +x run-all.sh
+./run-all.sh
+```
+
+This should successfully cd into both the front and back directories, run npm install, npm run build, and npm test for each, and then return to the root directory. If any command fails, the script will terminate immediately.
+
+
+
 # Reviews on Tap
 
 This is a take home UI assignment to build a nice little web app for recording and rating root beers.  A backend has been provided for you.

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface PaginationProps {
   currentPage: number;
@@ -10,7 +10,12 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({
-  currentPage, totalPages, onNext, onPrevious, isNextDisabled, isPreviousDisabled,
+  currentPage,
+  totalPages,
+  onNext,
+  onPrevious,
+  isNextDisabled,
+  isPreviousDisabled,
 }) => {
   return (
     <div className="flex justify-between mt-6">

@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Alert from 'components/Alert'; // Import the reusable Alert component
+import React, { useState } from "react";
+import axios from "axios";
+import Alert from "components/Alert"; // Import the reusable Alert component
 
 interface ImageUploaderProps {
   uploadUrl: string; // URL to upload the image
   onImageUploaded: () => void; // Callback after the image is uploaded
 }
 
-const ImageUploader: React.FC<ImageUploaderProps> = ({ uploadUrl, onImageUploaded }) => {
+const ImageUploader: React.FC<ImageUploaderProps> = ({
+  uploadUrl,
+  onImageUploaded,
+}) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
@@ -27,14 +30,14 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ uploadUrl, onImageUploade
     if (!selectedImage) return;
 
     const formData = new FormData();
-    formData.append('file', selectedImage); // Append file with 'file' key
+    formData.append("file", selectedImage); // Append file with 'file' key
 
     try {
       setLoading(true);
 
       await axios.post(uploadUrl, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
 
@@ -43,7 +46,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ uploadUrl, onImageUploade
       onImageUploaded(); // Notify the parent component
     } catch (error) {
       setShowErrorAlert(true); // Show error alert
-      console.error('Error uploading image:', error);
+      console.error("Error uploading image:", error);
     } finally {
       setLoading(false);
     }
@@ -68,29 +71,28 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ uploadUrl, onImageUploade
       />
 
       <form onSubmit={handleImageUpload} className="mt-6">
-        <div>
-          <label className="block mb-2">Upload Image</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageSelection}
-            className="border p-2 rounded w-full"
-          />
-        </div>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageSelection}
+          className="border p-2 rounded w-full"
+        />
 
         {selectedImage && (
           <div className="mt-4">
             <p className="font-semibold mb-2">Selected Image:</p>
-            <p className="text-gray-600">{selectedImage.name} ({selectedImage.type})</p>
+            <p className="text-gray-600">
+              {selectedImage.name} ({selectedImage.type})
+            </p>
           </div>
         )}
 
         <button
           type="submit"
-          className={`mt-4 py-2 px-4 rounded ${selectedImage ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
+          className={`mt-4 py-2 px-4 rounded ${selectedImage ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
           disabled={!selectedImage || loading}
         >
-          {loading ? 'Uploading...' : 'Upload Image'}
+          {loading ? "Uploading..." : "Upload Image"}
         </button>
       </form>
     </div>

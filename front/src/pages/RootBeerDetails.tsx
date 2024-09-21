@@ -1,14 +1,14 @@
-import React, { Suspense, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useRootBeerDetails } from 'hooks/useRootBeerDetails';
-import { useReviews } from 'hooks/useReviews';
-import Pagination from 'components/Pagination';
-import PicturesGrid from 'components/PicturesGrid';
-import ReviewList from 'components/ReviewList';
-import Modal from 'components/Modal';
+import React, { Suspense, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useRootBeerDetails } from "hooks/useRootBeerDetails";
+import { useReviews } from "hooks/useReviews";
+import Pagination from "components/Pagination";
+import PicturesGrid from "components/PicturesGrid";
+import ReviewList from "components/ReviewList";
+import Modal from "components/Modal";
 
-const AddReview = React.lazy(() => import('components/AddReview'));
-const ImageUploader = React.lazy(() => import('components/ImageUploader'));
+const AddReview = React.lazy(() => import("components/AddReview"));
+const ImageUploader = React.lazy(() => import("components/ImageUploader"));
 
 const RootBeerDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -25,7 +25,12 @@ const RootBeerDetails: React.FC = () => {
 
   // Use custom hooks to fetch root beer details and reviews
   const rootBeer = useRootBeerDetails(id!, refreshFlag);
-  const { reviews, totalReviews } = useReviews(id!, offset, length, refreshFlag);
+  const { reviews, totalReviews } = useReviews(
+    id!,
+    offset,
+    length,
+    refreshFlag,
+  );
 
   const totalPages = Math.ceil(totalReviews / length);
 
@@ -52,15 +57,16 @@ const RootBeerDetails: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 animate-fadeIn">
       {/* Pagination-style header with a "Home" link */}
       <div className="text-gray-600 mb-4">
-        <Link to="/" className="text-blue-600 hover:underline">Home</Link>
+        <Link to="/" className="text-blue-600 hover:underline">
+          Home
+        </Link>
         <span className="mx-2">/</span>
         <span>{rootBeer.name}</span>
       </div>
       <div className="bg-white shadow-md rounded-lg p-6 mt-8">
-
         <h1 className="text-3xl font-bold mb-4">{rootBeer.name}</h1>
         <p className="text-gray-600 mb-4">{rootBeer.description}</p>
 
@@ -78,7 +84,7 @@ const RootBeerDetails: React.FC = () => {
 
         {/* Reviews Section */}
         <div className="flex justify-between items-center mt-8">
-          <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+          <h2 className="text-2xl font-bold mb-4">Reviews ({totalReviews})</h2>
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             onClick={() => setIsReviewModalOpen(true)}
@@ -86,7 +92,7 @@ const RootBeerDetails: React.FC = () => {
             Add Review
           </button>
         </div>
-        <ReviewList reviews={reviews} totalReviews={totalReviews} />
+        <ReviewList reviews={reviews} />
 
         {/* Conditionally show pagination only if there are reviews */}
         {totalReviews > length && (
@@ -107,7 +113,10 @@ const RootBeerDetails: React.FC = () => {
           title="Upload Picture"
         >
           <Suspense fallback={<div>Loading Image Uploader...</div>}>
-            <ImageUploader uploadUrl={`http://localhost:4000/api/drinks/${id}/pictures`} onImageUploaded={handleRefresh} />
+            <ImageUploader
+              uploadUrl={`http://localhost:4000/api/drinks/${id}/pictures`}
+              onImageUploaded={handleRefresh}
+            />
           </Suspense>
         </Modal>
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import { getImageUrl } from 'utils/formatUtils'; // Utility function
+import React from "react";
+import { getImageUrl } from "utils/formatUtils"; // Utility function
 
 interface PictureObject {
   id: number;
@@ -16,7 +16,11 @@ const PicturesGrid: React.FC<PicturesGridProps> = ({ pictures }) => (
     {pictures.length > 0 ? (
       pictures.map((picture) => (
         <div key={picture.id} className="mb-4">
-          <img src={getImageUrl(picture.path)} alt={picture.name} className="w-24 h-24 object-cover rounded" />
+          <img
+            src={getImageUrl(picture.path)}
+            alt={picture.name}
+            className="w-24 h-24 object-cover rounded"
+          />
         </div>
       ))
     ) : (

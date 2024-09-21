@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import StarRating from 'components/StarRating';
+import React, { useState } from "react";
+import StarRating from "components/StarRating";
 
 interface RatingDropdownProps {
   label: string;
@@ -7,7 +7,11 @@ interface RatingDropdownProps {
   onRatingSelect: (rating: number) => void;
 }
 
-const RatingDropdown: React.FC<RatingDropdownProps> = ({ label, selectedRating, onRatingSelect }) => {
+const RatingDropdown: React.FC<RatingDropdownProps> = ({
+  label,
+  selectedRating,
+  onRatingSelect,
+}) => {
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
@@ -27,12 +31,13 @@ const RatingDropdown: React.FC<RatingDropdownProps> = ({ label, selectedRating, 
         >
           {selectedRating ? (
             <div className="flex items-center">
-              <StarRating rating={selectedRating} /> {/* Show selected rating with stars */}
+              <StarRating rating={selectedRating} />{" "}
+              {/* Show selected rating with stars */}
             </div>
           ) : (
             label
           )}
-          <span>{dropdownOpen ? '▲' : '▼'}</span>
+          <span>{dropdownOpen ? "▲" : "▼"}</span>
         </button>
 
         {/* Dropdown list of ratings */}
@@ -45,7 +50,9 @@ const RatingDropdown: React.FC<RatingDropdownProps> = ({ label, selectedRating, 
                 onClick={() => handleRatingSelect(value)}
               >
                 <StarRating rating={value} /> {/* Show stars */}
-                <span className="text-xs">{value} Star{value > 1 ? 's' : ''}</span>
+                <span className="text-xs">
+                  {value} Star{value > 1 ? "s" : ""}
+                </span>
               </li>
             ))}
           </ul>

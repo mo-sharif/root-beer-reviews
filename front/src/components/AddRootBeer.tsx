@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Alert from 'components/Alert'; // Import the Alert component
+import React, { useState } from "react";
+import axios from "axios";
+import Alert from "components/Alert"; // Import the Alert component
 
 interface AddRootBeerProps {
   onRootBeerAdded: () => void; // Callback to notify when a root beer is added
 }
 
 const AddRootBeer: React.FC<AddRootBeerProps> = ({ onRootBeerAdded }) => {
-  const [name, setName] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
+  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
   const [showErrorAlert, setShowErrorAlert] = useState<boolean>(false);
 
   // Validate form inputs
-  const isFormValid = name.trim() !== '' && description.trim() !== '';
+  const isFormValid = name.trim() !== "" && description.trim() !== "";
 
   // Handle form submission using axios
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,20 +26,23 @@ const AddRootBeer: React.FC<AddRootBeerProps> = ({ onRootBeerAdded }) => {
 
     try {
       setLoading(true);
-      const response = await axios.post('http://localhost:4000/api/drinks', payload);
+      const response = await axios.post(
+        "http://localhost:4000/api/drinks",
+        payload,
+      );
 
       if (response.status === 200) {
         setShowSuccessAlert(true); // Show success alert
-        setName(''); // Reset the form
-        setDescription('');
+        setName(""); // Reset the form
+        setDescription("");
         onRootBeerAdded(); // Trigger the callback to reload the list of root beers
       } else {
         setShowErrorAlert(true); // Show error alert
-        console.error('Error adding root beer:', response.data);
+        console.error("Error adding root beer:", response.data);
       }
     } catch (error) {
       setShowErrorAlert(true); // Show error alert
-      console.error('Error adding root beer:', error);
+      console.error("Error adding root beer:", error);
     } finally {
       setLoading(false);
     }
@@ -63,9 +66,7 @@ const AddRootBeer: React.FC<AddRootBeerProps> = ({ onRootBeerAdded }) => {
         onClose={() => setShowErrorAlert(false)}
       />
 
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded p-4">
-        <h1 className="text-2xl mb-4">Add Root Beer</h1>
-
+      <form onSubmit={handleSubmit} className="mt-8">
         {/* Input for root beer name */}
         <div>
           <label className="block mb-2">Name</label>
@@ -92,10 +93,10 @@ const AddRootBeer: React.FC<AddRootBeerProps> = ({ onRootBeerAdded }) => {
         {/* Submit button */}
         <button
           type="submit"
-          className={`mt-4 py-2 px-4 rounded ${isFormValid ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
+          className={`mt-4 py-2 px-4 rounded ${isFormValid ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
           disabled={!isFormValid || loading}
         >
-          {loading ? 'Submitting...' : 'Submit'}
+          {loading ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>

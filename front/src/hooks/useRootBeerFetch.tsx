@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import { useState, useEffect, useCallback } from "react";
+import axios from "axios";
 
 interface RootBeer {
   id: number;
@@ -15,7 +15,7 @@ interface UseRootBeerFetchResult {
   loading: boolean;
   fetchRootBeers: (currentOffset: number) => Promise<void>;
 }
-const BASE_URL = 'http://localhost:4000';
+const BASE_URL = "http://localhost:4000";
 
 export const useRootBeerFetch = (
   offset: number,
@@ -23,9 +23,9 @@ export const useRootBeerFetch = (
   minRating: number | null,
   maxRating: number | null,
   sort: string,
-  name: string,          // New parameter for name filtering
-  description: string,   // New parameter for description filtering
-  length: number         // Add length to the hook arguments
+  name: string, // New parameter for name filtering
+  description: string, // New parameter for description filtering
+  length: number, // Add length to the hook arguments
 ): UseRootBeerFetchResult => {
   const [rootBeers, setRootBeers] = useState<RootBeer[]>([]);
   const [total, setTotal] = useState<number>(0);
@@ -39,19 +39,19 @@ export const useRootBeerFetch = (
         const params: any = { offset: currentOffset, length, desc, sort };
         if (minRating !== null) params.minRating = minRating;
         if (maxRating !== null) params.maxRating = maxRating;
-        if (name) params.name = name;               // Use name to filter
-        if (description) params.description = description;  // Use description to filter
+        if (name) params.name = name; // Use name to filter
+        if (description) params.description = description; // Use description to filter
 
         const response = await axios.get(`${BASE_URL}/api/drinks`, { params });
         setRootBeers(response.data.items);
         setTotal(response.data.total);
       } catch (error) {
-        console.error('Error fetching root beers:', error);
+        console.error("Error fetching root beers:", error);
       } finally {
         setLoading(false);
       }
     },
-    [desc, minRating, maxRating, sort, name, description, length] // Add necessary dependencies here
+    [desc, minRating, maxRating, sort, name, description, length], // Add necessary dependencies here
   );
 
   // Fetch root beers when component mounts or any dependency changes

@@ -1,14 +1,19 @@
-import React from 'react';
-import { Transition } from '@headlessui/react';
+import React from "react";
+import { Transition } from "@headlessui/react";
 
 interface AlertProps {
   message: string;
   show: boolean;
-  type?: 'success' | 'error';
+  type?: "success" | "error";
   onClose: () => void;
 }
 
-const Alert: React.FC<AlertProps> = ({ message, show, type = 'success', onClose }) => {
+const Alert: React.FC<AlertProps> = ({
+  message,
+  show,
+  type = "success",
+  onClose,
+}) => {
   return (
     <Transition
       show={show}
@@ -21,7 +26,9 @@ const Alert: React.FC<AlertProps> = ({ message, show, type = 'success', onClose 
     >
       <div
         className={`fixed bottom-4 right-4 w-64 p-4 rounded-md shadow-md z-50 ${
-          type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+          type === "success"
+            ? "bg-green-500 text-white"
+            : "bg-red-500 text-white"
         }`}
       >
         <div className="flex justify-between items-center">
