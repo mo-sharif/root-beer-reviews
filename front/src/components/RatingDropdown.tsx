@@ -1,6 +1,5 @@
-import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
-import { Fragment } from "react";
 import StarRating from "components/StarRating";
+import Dropdown from "components/Dropdown";
 
 interface RatingDropdownProps {
   label: string;
@@ -13,60 +12,27 @@ const RatingDropdown: React.FC<RatingDropdownProps> = ({
   selectedRating,
   onRatingSelect,
 }) => {
-  const handleRatingSelect = (rating: number) => {
-    onRatingSelect(rating);
-  };
-
   return (
-    <div className="relative inline-block text-left">
-      <Menu as="div" className="relative">
-        {/* Menu Button */}
-        <div>
-          <MenuButton className="inline-flex w-full justify-between items-center bg-white border p-2 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            {selectedRating ? (
-              <div className="flex items-center">
-                <StarRating rating={selectedRating} />
-              </div>
-            ) : (
-              label
-            )}
-          </MenuButton>
+    <Dropdown
+      items={[1, 2, 3, 4, 5]}
+      label={label}
+      selected={selectedRating}
+      onSelected={onRatingSelect}
+      MenuButtonComponent={({ selected }) => (
+        <div className="flex items-center">
+          <StarRating rating={selected} />
         </div>
+      )}
+      MenuItemButtonComponent={({ item }) => (
+        <>
+          <StarRating rating={item} />
+          <span className="ml-2">
+            {item} Star{item > 1 ? "s" : ""}
+          </span>
+        </>
+      )}
+    />
 
-        {/* Dropdown Items */}
-        <Transition
-          as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
-        >
-          <MenuItems className="absolute mt-2 w-44 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
-            <div className="py-1">
-              {[1, 2, 3, 4, 5].map((value) => (
-                <MenuItem key={value}>
-                  {({ active }) => (
-                    <button
-                      className={`${
-                        active ? "bg-gray-100" : ""
-                      } flex items-center justify-between w-full px-4 py-2 text-sm text-gray-700`}
-                      onClick={() => handleRatingSelect(value)}
-                    >
-                      <StarRating rating={value} />
-                      <span className="ml-2">
-                        {value} Star{value > 1 ? "s" : ""}
-                      </span>
-                    </button>
-                  )}
-                </MenuItem>
-              ))}
-            </div>
-          </MenuItems>
-        </Transition>
-      </Menu>
-    </div>
   );
 };
 
